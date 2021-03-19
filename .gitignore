@@ -1,0 +1,7 @@
+test/tmp
+#psol/
+psol-*.tar.gz
+*.*.*.*.tar.gz
+#nginx
+.DS_Store
+node_modules
