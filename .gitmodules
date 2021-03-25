@@ -1,4 +1,4 @@
- [submodule "testing-dependencies/mod_pagespeed"]
+[submodule "testing-dependencies/mod_pagespeed"]
 	path = testing-dependencies/mod_pagespeed
 	url = https://github.com/apache/incubator-pagespeed-mod.git
 [submodule "testing-dependencies/ngx_cache_purge"]
