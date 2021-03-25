@@ -1,7 +1,7 @@
 #!/bin/bash
 # nginx config
 
-if [ $EVENT_SELECT = NO -a $EVENT_FOUND = NO ]; then
+if [ "$EVENT_SELECT" = NO -a "$EVENT_FOUND" = NO ]; then
     EVENT_SELECT=YES
 fi
 
@@ -12,7 +12,7 @@ if [ $EVENT_SELECT = YES ]; then
 fi
 
 
-if [ $EVENT_POLL = NO -a $EVENT_FOUND = NO ]; then
+if [ "$EVENT_POLL" = NO -a "$EVENT_FOUND" = NO ]; then
     EVENT_POLL=YES
 fi
 
@@ -23,7 +23,7 @@ if [ $EVENT_POLL = YES ]; then
 fi
 
 
-if [ $NGX_TEST_BUILD_DEVPOLL = YES ]; then
+if [ "$NGX_TEST_BUILD_DEVPOLL" = YES ]; then
     have=NGX_HAVE_DEVPOLL . auto/have
     have=NGX_TEST_BUILD_DEVPOLL . auto/have
     EVENT_MODULES="$EVENT_MODULES $DEVPOLL_MODULE"
@@ -31,14 +31,14 @@ if [ $NGX_TEST_BUILD_DEVPOLL = YES ]; then
 fi
 
 
-if [ $NGX_TEST_BUILD_EVENTPORT = YES ]; then
+if [ "$NGX_TEST_BUILD_EVENTPORT" = YES ]; then
     have=NGX_HAVE_EVENTPORT . auto/have
     have=NGX_TEST_BUILD_EVENTPORT . auto/have
     EVENT_MODULES="$EVENT_MODULES $EVENTPORT_MODULE"
     CORE_SRCS="$CORE_SRCS $EVENTPORT_SRCS"
 fi
 
-if [ $NGX_TEST_BUILD_EPOLL = YES ]; then
+if [ "$NGX_TEST_BUILD_EPOLL" = YES ]; then
     have=NGX_HAVE_EPOLL . auto/have
     have=NGX_HAVE_EPOLLRDHUP . auto/have
     have=NGX_HAVE_EPOLLEXCLUSIVE . auto/have
@@ -48,13 +48,13 @@ if [ $NGX_TEST_BUILD_EPOLL = YES ]; then
     CORE_SRCS="$CORE_SRCS $EPOLL_SRCS"
 fi
 
-if [ $NGX_TEST_BUILD_SOLARIS_SENDFILEV = YES ]; then
+if [ "$NGX_TEST_BUILD_SOLARIS_SENDFILEV" = YES ]; then
     have=NGX_TEST_BUILD_SOLARIS_SENDFILEV . auto/have
     CORE_SRCS="$CORE_SRCS $SOLARIS_SENDFILEV_SRCS"
 fi
 
 
-if [ $HTTP = YES ]; then
+if [ "$HTTP" = YES ]; then
     HTTP_MODULES=
     HTTP_DEPS=
     HTTP_INCS=
@@ -94,7 +94,7 @@ if [ $HTTP = YES ]; then
     fi
 
 
-    if [ $HTTP_CACHE = YES ]; then
+    if [ "$HTTP_CACHE" = YES ]; then
         have=NGX_HTTP_CACHE . auto/have
         HTTP_SRCS="$HTTP_SRCS $HTTP_FILE_CACHE_SRCS"
     fi
@@ -199,7 +199,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_V2 = YES ]; then
+    if [ "$HTTP_V2" = YES ]; then
         ngx_module_name=ngx_http_v2_filter_module
         ngx_module_incs=
         ngx_module_deps=
@@ -221,7 +221,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_GZIP = YES ]; then
+    if [ "$HTTP_GZIP" = YES ]; then
         have=NGX_HTTP_GZIP . auto/have
         USE_ZLIB=YES
 
@@ -246,7 +246,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_SSI = YES ]; then
+    if [ "$HTTP_SSI" = YES ]; then
         have=NGX_HTTP_SSI . auto/have
 
         ngx_module_name=ngx_http_ssi_filter_module
@@ -259,7 +259,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_CHARSET = YES ]; then
+    if [ "$HTTP_CHARSET" = YES ]; then
         ngx_module_name=ngx_http_charset_filter_module
         ngx_module_incs=
         ngx_module_deps=
@@ -270,7 +270,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_XSLT != NO ]; then
+    if [ "$HTTP_XSLT" != NO ]; then
         ngx_module_name=ngx_http_xslt_filter_module
         ngx_module_incs=
         ngx_module_deps=
@@ -281,7 +281,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_IMAGE_FILTER != NO ]; then
+    if [ "$HTTP_IMAGE_FILTER" != NO ]; then
         ngx_module_name=ngx_http_image_filter_module
         ngx_module_incs=
         ngx_module_deps=
@@ -292,7 +292,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_SUB = YES ]; then
+    if [ "$HTTP_SUB" = YES ]; then
         ngx_module_name=ngx_http_sub_filter_module
         ngx_module_incs=
         ngx_module_deps=
@@ -303,7 +303,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_ADDITION = YES ]; then
+    if [ "$HTTP_ADDITION" = YES ]; then
         ngx_module_name=ngx_http_addition_filter_module
         ngx_module_incs=
         ngx_module_deps=
@@ -314,7 +314,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_GUNZIP = YES ]; then
+    if [ "$HTTP_GUNZIP" = YES ]; then
         have=NGX_HTTP_GZIP . auto/have
         USE_ZLIB=YES
 
@@ -328,7 +328,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_USERID = YES ]; then
+    if [ "$HTTP_USERID" = YES ]; then
         ngx_module_name=ngx_http_userid_filter_module
         ngx_module_incs=
         ngx_module_deps=
@@ -387,7 +387,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_SLICE = YES ]; then
+    if [ "$HTTP_SLICE" = YES ]; then
         ngx_module_name=ngx_http_slice_filter_module
         ngx_module_incs=
         ngx_module_deps=
@@ -401,7 +401,7 @@ if [ $HTTP = YES ]; then
 
     ngx_module_type=HTTP
 
-    if [ $HTTP_V2 = YES ]; then
+    if [ "$HTTP_V2" = YES ]; then
         have=NGX_HTTP_V2 . auto/have
         have=NGX_HTTP_HEADERS . auto/have
 
@@ -432,7 +432,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_GZIP_STATIC = YES ]; then
+    if [ "$HTTP_GZIP_STATIC" = YES ]; then
         have=NGX_HTTP_GZIP . auto/have
 
         ngx_module_name=ngx_http_gzip_static_module
@@ -445,7 +445,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_DAV = YES ]; then
+    if [ "$HTTP_DAV" = YES ]; then
         have=NGX_HTTP_DAV . auto/have
 
         ngx_module_name=ngx_http_dav_module
@@ -458,7 +458,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_AUTOINDEX = YES ]; then
+    if [ "$HTTP_AUTOINDEX" = YES ]; then
         ngx_module_name=ngx_http_autoindex_module
         ngx_module_incs=
         ngx_module_deps=
@@ -480,7 +480,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_RANDOM_INDEX = YES ]; then
+    if [ "$HTTP_RANDOM_INDEX" = YES ]; then
         ngx_module_name=ngx_http_random_index_module
         ngx_module_incs=
         ngx_module_deps=
@@ -491,7 +491,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_MIRROR = YES ]; then
+    if [ "$HTTP_MIRROR" = YES ]; then
         ngx_module_name=ngx_http_mirror_module
         ngx_module_incs=
         ngx_module_deps=
@@ -513,7 +513,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_AUTH_REQUEST = YES ]; then
+    if [ "$HTTP_AUTH_REQUEST" = YES ]; then
         ngx_module_name=ngx_http_auth_request_module
         ngx_module_incs=
         ngx_module_deps=
@@ -524,7 +524,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_AUTH_BASIC = YES ]; then
+    if [ "$HTTP_AUTH_BASIC" = YES ]; then
         have=NGX_CRYPT . auto/have
 
         ngx_module_name=ngx_http_auth_basic_module
@@ -537,7 +537,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_ACCESS = YES ]; then
+    if [ "$HTTP_ACCESS" = YES ]; then
         ngx_module_name=ngx_http_access_module
         ngx_module_incs=
         ngx_module_deps=
@@ -548,7 +548,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_LIMIT_CONN = YES ]; then
+    if [ "$HTTP_LIMIT_CONN" = YES ]; then
         ngx_module_name=ngx_http_limit_conn_module
         ngx_module_incs=
         ngx_module_deps=
@@ -559,7 +559,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_LIMIT_REQ = YES ]; then
+    if [ "$HTTP_LIMIT_REQ" = YES ]; then
         ngx_module_name=ngx_http_limit_req_module
         ngx_module_incs=
         ngx_module_deps=
@@ -570,7 +570,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_REALIP = YES ]; then
+    if [ "$HTTP_REALIP" = YES ]; then
         have=NGX_HTTP_REALIP . auto/have
         have=NGX_HTTP_X_FORWARDED_FOR . auto/have
 
@@ -584,7 +584,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_STATUS = YES ]; then
+    if [ "$HTTP_STATUS" = YES ]; then
         ngx_module_name=ngx_http_status_module
         ngx_module_incs=
         ngx_module_deps=
@@ -595,7 +595,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_GEO = YES ]; then
+    if [ "$HTTP_GEO" = YES ]; then
         have=NGX_HTTP_X_FORWARDED_FOR . auto/have
 
         ngx_module_name=ngx_http_geo_module
@@ -608,7 +608,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_GEOIP != NO ]; then
+    if [ "$HTTP_GEOIP" != NO ]; then
         have=NGX_HTTP_X_FORWARDED_FOR . auto/have
 
         ngx_module_name=ngx_http_geoip_module
@@ -621,7 +621,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_MAP = YES ]; then
+    if [ "$HTTP_MAP" = YES ]; then
         ngx_module_name=ngx_http_map_module
         ngx_module_incs=
         ngx_module_deps=
@@ -632,7 +632,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_SPLIT_CLIENTS = YES ]; then
+    if [ "$HTTP_SPLIT_CLIENTS" = YES ]; then
         ngx_module_name=ngx_http_split_clients_module
         ngx_module_incs=
         ngx_module_deps=
@@ -643,7 +643,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_REFERER = YES ]; then
+    if [ "$HTTP_REFERER" = YES ]; then
         ngx_module_name=ngx_http_referer_module
         ngx_module_incs=
         ngx_module_deps=
@@ -654,7 +654,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_REWRITE = YES -a $USE_PCRE != DISABLED ]; then
+    if [ "$HTTP_REWRITE" = YES -a "$USE_PCRE" != DISABLED ]; then
         USE_PCRE=YES
 
         ngx_module_name=ngx_http_rewrite_module
@@ -667,7 +667,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_SSL = YES ]; then
+    if [ "$HTTP_SSL" = YES ]; then
         USE_OPENSSL=YES
         have=NGX_HTTP_SSL . auto/have
 
@@ -681,7 +681,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_PROXY = YES ]; then
+    if [ "$HTTP_PROXY" = YES ]; then
         have=NGX_HTTP_X_FORWARDED_FOR . auto/have
 
         ngx_module_name=ngx_http_proxy_module
@@ -694,7 +694,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_FASTCGI = YES ]; then
+    if [ "$HTTP_FASTCGI" = YES ]; then
         ngx_module_name=ngx_http_fastcgi_module
         ngx_module_incs=
         ngx_module_deps=
@@ -705,7 +705,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_UWSGI = YES ]; then
+    if [ "$HTTP_UWSGI" = YES ]; then
         ngx_module_name=ngx_http_uwsgi_module
         ngx_module_incs=
         ngx_module_deps=
@@ -716,7 +716,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_SCGI = YES ]; then
+    if [ "$HTTP_SCGI" = YES ]; then
         ngx_module_name=ngx_http_scgi_module
         ngx_module_incs=
         ngx_module_deps=
@@ -727,7 +727,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_GRPC = YES -a $HTTP_V2 = YES ]; then
+    if [ "$HTTP_GRPC" = YES -a "$HTTP_V2" = YES ]; then
         ngx_module_name=ngx_http_grpc_module
         ngx_module_incs=
         ngx_module_deps=
@@ -738,7 +738,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_PERL != NO ]; then
+    if [ "$HTTP_PERL" != NO ]; then
         ngx_module_name=ngx_http_perl_module
         ngx_module_incs=src/http/modules/perl
         ngx_module_deps=src/http/modules/perl/ngx_http_perl_module.h
@@ -749,7 +749,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_MEMCACHED = YES ]; then
+    if [ "$HTTP_MEMCACHED" = YES ]; then
         ngx_module_name=ngx_http_memcached_module
         ngx_module_incs=
         ngx_module_deps=
@@ -760,7 +760,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_EMPTY_GIF = YES ]; then
+    if [ "$HTTP_EMPTY_GIF" = YES ]; then
         ngx_module_name=ngx_http_empty_gif_module
         ngx_module_incs=
         ngx_module_deps=
@@ -771,7 +771,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_BROWSER = YES ]; then
+    if [ "$HTTP_BROWSER" = YES ]; then
         ngx_module_name=ngx_http_browser_module
         ngx_module_incs=
         ngx_module_deps=
@@ -782,7 +782,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_SECURE_LINK = YES ]; then
+    if [ "$HTTP_SECURE_LINK" = YES ]; then
         ngx_module_name=ngx_http_secure_link_module
         ngx_module_incs=
         ngx_module_deps=
@@ -793,7 +793,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_DEGRADATION = YES ]; then
+    if [ "$HTTP_DEGRADATION" = YES ]; then
         have=NGX_HTTP_DEGRADATION . auto/have
 
         ngx_module_name=ngx_http_degradation_module
@@ -806,7 +806,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_FLV = YES ]; then
+    if [ "$HTTP_FLV" = YES ]; then
         ngx_module_name=ngx_http_flv_module
         ngx_module_incs=
         ngx_module_deps=
@@ -817,7 +817,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_MP4 = YES ]; then
+    if [ "$HTTP_MP4" = YES ]; then
         ngx_module_name=ngx_http_mp4_module
         ngx_module_incs=
         ngx_module_deps=
@@ -828,7 +828,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_UPSTREAM_HASH = YES ]; then
+    if [ "$HTTP_UPSTREAM_HASH" = YES ]; then
         ngx_module_name=ngx_http_upstream_hash_module
         ngx_module_incs=
         ngx_module_deps=
@@ -839,7 +839,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_UPSTREAM_IP_HASH = YES ]; then
+    if [ "$HTTP_UPSTREAM_IP_HASH" = YES ]; then
         ngx_module_name=ngx_http_upstream_ip_hash_module
         ngx_module_incs=
         ngx_module_deps=
@@ -850,7 +850,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_UPSTREAM_LEAST_CONN = YES ]; then
+    if [ "$HTTP_UPSTREAM_LEAST_CONN" = YES ]; then
         ngx_module_name=ngx_http_upstream_least_conn_module
         ngx_module_incs=
         ngx_module_deps=
@@ -861,7 +861,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_UPSTREAM_RANDOM = YES ]; then
+    if [ "$HTTP_UPSTREAM_RANDOM" = YES ]; then
         ngx_module_name=ngx_http_upstream_random_module
         ngx_module_incs=
         ngx_module_deps=
@@ -872,7 +872,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_UPSTREAM_KEEPALIVE = YES ]; then
+    if [ "$HTTP_UPSTREAM_KEEPALIVE" = YES ]; then
         ngx_module_name=ngx_http_upstream_keepalive_module
         ngx_module_incs=
         ngx_module_deps=
@@ -883,7 +883,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_UPSTREAM_ZONE = YES ]; then
+    if [ "$HTTP_UPSTREAM_ZONE" = YES ]; then
         have=NGX_HTTP_UPSTREAM_ZONE . auto/have
 
         ngx_module_name=ngx_http_upstream_zone_module
@@ -896,7 +896,7 @@ if [ $HTTP = YES ]; then
         . auto/module
     fi
 
-    if [ $HTTP_STUB_STATUS = YES ]; then
+    if [ "$HTTP_STUB_STATUS" = YES ]; then
         have=NGX_STAT_STUB . auto/have
 
         ngx_module_name=ngx_http_stub_status_module
@@ -911,7 +911,7 @@ if [ $HTTP = YES ]; then
 fi
 
 
-if [ $MAIL != NO ]; then
+if [ "$MAIL" != NO ]; then
     MAIL_MODULES=
     MAIL_DEPS=
     MAIL_INCS=
@@ -934,7 +934,7 @@ if [ $MAIL != NO ]; then
 
     ngx_module_incs=
 
-    if [ $MAIL_SSL = YES ]; then
+    if [ "$MAIL_SSL" = YES ]; then
         USE_OPENSSL=YES
         have=NGX_MAIL_SSL . auto/have
 
@@ -945,7 +945,7 @@ if [ $MAIL != NO ]; then
         . auto/module
     fi
 
-    if [ $MAIL_POP3 = YES ]; then
+    if [ "$MAIL_POP3" = YES ]; then
         ngx_module_name=ngx_mail_pop3_module
         ngx_module_deps=src/mail/ngx_mail_pop3_module.h
         ngx_module_srcs="src/mail/ngx_mail_pop3_module.c \
@@ -954,7 +954,7 @@ if [ $MAIL != NO ]; then
         . auto/module
     fi
 
-    if [ $MAIL_IMAP = YES ]; then
+    if [ "$MAIL_IMAP" = YES ]; then
         ngx_module_name=ngx_mail_imap_module
         ngx_module_deps=src/mail/ngx_mail_imap_module.h
         ngx_module_srcs="src/mail/ngx_mail_imap_module.c \
@@ -963,7 +963,7 @@ if [ $MAIL != NO ]; then
         . auto/module
     fi
 
-    if [ $MAIL_SMTP = YES ]; then
+    if [ "$MAIL_SMTP" = YES ]; then
         ngx_module_name=ngx_mail_smtp_module
         ngx_module_deps=src/mail/ngx_mail_smtp_module.h
         ngx_module_srcs="src/mail/ngx_mail_smtp_module.c \
@@ -986,7 +986,7 @@ if [ $MAIL != NO ]; then
 fi
 
 
-if [ $STREAM != NO ]; then
+if [ "$STREAM" != NO ]; then
     STREAM_MODULES=
     STREAM_DEPS=
     STREAM_INCS=
@@ -1024,7 +1024,7 @@ if [ $STREAM != NO ]; then
 
     ngx_module_incs=
 
-    if [ $STREAM_SSL = YES ]; then
+    if [ "$STREAM_SSL" = YES ]; then
         USE_OPENSSL=YES
         have=NGX_STREAM_SSL . auto/have
 
@@ -1037,7 +1037,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_REALIP = YES ]; then
+    if [ "$STREAM_REALIP" = YES ]; then
         ngx_module_name=ngx_stream_realip_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_realip_module.c
@@ -1047,7 +1047,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_LIMIT_CONN = YES ]; then
+    if [ "$STREAM_LIMIT_CONN" = YES ]; then
         ngx_module_name=ngx_stream_limit_conn_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_limit_conn_module.c
@@ -1057,7 +1057,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_ACCESS = YES ]; then
+    if [ "$STREAM_ACCESS" = YES ]; then
         ngx_module_name=ngx_stream_access_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_access_module.c
@@ -1067,7 +1067,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_GEO = YES ]; then
+    if [ "$STREAM_GEO" = YES ]; then
         ngx_module_name=ngx_stream_geo_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_geo_module.c
@@ -1077,7 +1077,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_GEOIP != NO ]; then
+    if [ "$STREAM_GEOIP" != NO ]; then
         ngx_module_name=ngx_stream_geoip_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_geoip_module.c
@@ -1087,7 +1087,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_MAP = YES ]; then
+    if [ "$STREAM_MAP" = YES ]; then
         ngx_module_name=ngx_stream_map_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_map_module.c
@@ -1097,7 +1097,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_SPLIT_CLIENTS = YES ]; then
+    if [ "$STREAM_SPLIT_CLIENTS" = YES ]; then
         ngx_module_name=ngx_stream_split_clients_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_split_clients_module.c
@@ -1107,7 +1107,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_RETURN = YES ]; then
+    if [ "$STREAM_RETURN" = YES ]; then
         ngx_module_name=ngx_stream_return_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_return_module.c
@@ -1117,7 +1117,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_SET = YES ]; then
+    if [ "$STREAM_SET" = YES ]; then
         ngx_module_name=ngx_stream_set_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_set_module.c
@@ -1127,7 +1127,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_UPSTREAM_HASH = YES ]; then
+    if [ "$STREAM_UPSTREAM_HASH" = YES ]; then
         ngx_module_name=ngx_stream_upstream_hash_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_upstream_hash_module.c
@@ -1137,7 +1137,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_UPSTREAM_LEAST_CONN = YES ]; then
+    if [ "$STREAM_UPSTREAM_LEAST_CONN" = YES ]; then
         ngx_module_name=ngx_stream_upstream_least_conn_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_upstream_least_conn_module.c
@@ -1147,7 +1147,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_UPSTREAM_RANDOM = YES ]; then
+    if [ "$STREAM_UPSTREAM_RANDOM" = YES ]; then
         ngx_module_name=ngx_stream_upstream_random_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_upstream_random_module.c
@@ -1157,7 +1157,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_UPSTREAM_ZONE = YES ]; then
+    if [ "$STREAM_UPSTREAM_ZONE" = YES ]; then
         have=NGX_STREAM_UPSTREAM_ZONE . auto/have
 
         ngx_module_name=ngx_stream_upstream_zone_module
@@ -1169,7 +1169,7 @@ if [ $STREAM != NO ]; then
         . auto/module
     fi
 
-    if [ $STREAM_SSL_PREREAD = YES ]; then
+    if [ "$STREAM_SSL_PREREAD" = YES ]; then
         ngx_module_name=ngx_stream_ssl_preread_module
         ngx_module_deps=
         ngx_module_srcs=src/stream/ngx_stream_ssl_preread_module.c
@@ -1203,8 +1203,8 @@ if test -n "$NGX_ADDONS"; then
         ngx_module_order=
         ngx_module_link=ADDON
 
-        if test -f $ngx_addon_dir/config; then
-            . $ngx_addon_dir/config
+        if test -f "$ngx_addon_dir"/config; then
+            . "$ngx_addon_dir"/config
 
             echo " + $ngx_addon_name was configured"
 
@@ -1233,8 +1233,8 @@ if test -n "$DYNAMIC_ADDONS"; then
         ngx_module_order=
         ngx_module_link=DYNAMIC
 
-        if test -f $ngx_addon_dir/config; then
-            . $ngx_addon_dir/config
+        if test -f "$ngx_addon_dir"/config; then
+            . "$ngx_addon_dir"/config
 
             echo " + $ngx_addon_name was configured"
 
@@ -1279,12 +1279,12 @@ modules="$CORE_MODULES $EVENT_MODULES"
 
 
 # thread pool module should be initialized after events
-if [ $USE_THREADS = YES ]; then
+if [ "$USE_THREADS" = YES ]; then
     modules="$modules $THREAD_POOL_MODULE"
 fi
 
 
-if [ $HTTP = YES ]; then
+if [ "$HTTP" = YES ]; then
     modules="$modules $HTTP_MODULES $HTTP_FILTER_MODULES \
              $HTTP_AUX_FILTER_MODULES $HTTP_INIT_FILTER_MODULES"
 
@@ -1292,12 +1292,12 @@ if [ $HTTP = YES ]; then
 fi
 
 
-if [ $MAIL != NO ]; then
+if [ "$MAIL" != NO ]; then
 
-    if [ $MAIL = YES ]; then
+    if [ "$MAIL" = YES ]; then
         modules="$modules $MAIL_MODULES"
 
-    elif [ $MAIL = DYNAMIC ]; then
+    elif [ "$MAIL" = DYNAMIC ]; then
         ngx_module_name=$MAIL_MODULES
         ngx_module_incs=
         ngx_module_deps=
@@ -1312,12 +1312,12 @@ if [ $MAIL != NO ]; then
 fi
 
 
-if [ $STREAM != NO ]; then
+if [ "$STREAM" != NO ]; then
 
-    if [ $STREAM = YES ]; then
+    if [ "$STREAM" = YES ]; then
         modules="$modules $STREAM_MODULES"
 
-    elif [ $STREAM = DYNAMIC ]; then
+    elif [ "$STREAM" = DYNAMIC ]; then
         ngx_module_name=$STREAM_MODULES
         ngx_module_incs=
         ngx_module_deps=
@@ -1335,7 +1335,7 @@ fi
 ngx_module_type=MISC
 MISC_MODULES=
 
-if [ $NGX_GOOGLE_PERFTOOLS = YES ]; then
+if [ "$NGX_GOOGLE_PERFTOOLS" = YES ]; then
     ngx_module_name=ngx_google_perftools_module
     ngx_module_incs=
     ngx_module_deps=
@@ -1346,7 +1346,7 @@ if [ $NGX_GOOGLE_PERFTOOLS = YES ]; then
     . auto/module
 fi
 
-if [ $NGX_CPP_TEST = YES ]; then
+if [ "$NGX_CPP_TEST" = YES ]; then
     ngx_module_name=
     ngx_module_incs=
     ngx_module_deps=
@@ -1360,7 +1360,7 @@ fi
 modules="$modules $MISC_MODULES"
 
 
-if [ $NGX_COMPAT = YES ]; then
+if [ "$NGX_COMPAT" = YES ]; then
     have=NGX_COMPAT . auto/have
     have=NGX_HTTP_GZIP . auto/have
     have=NGX_HTTP_DAV . auto/have
@@ -1372,43 +1372,38 @@ if [ $NGX_COMPAT = YES ]; then
 fi
 
 
-cat << END                                    > $NGX_MODULES_C
-
+cat << END                                    > "$NGX_MODULES_C"
 #include <ngx_config.h>
 #include <ngx_core.h>
-
 $NGX_PRAGMA
-
 END
 
 for mod in $modules
 do
-    echo "extern ngx_module_t  $mod;"         >> $NGX_MODULES_C
+    echo "extern ngx_module_t  $mod;"         >> "$NGX_MODULES_C"
 done
 
-echo                                          >> $NGX_MODULES_C
-echo 'ngx_module_t *ngx_modules[] = {'        >> $NGX_MODULES_C
+echo                                          >> "$NGX_MODULES_C"
+echo 'ngx_module_t *ngx_modules[] = {'        >> "$NGX_MODULES_C"
 
 for mod in $modules
 do
-    echo "    &$mod,"                         >> $NGX_MODULES_C
+    echo "    &$mod,"                         >> "$NGX_MODULES_C"
 done
 
-cat << END                                    >> $NGX_MODULES_C
+cat << END                                    >> "$NGX_MODULES_C"
     NULL
 };
-
 END
 
-echo 'char *ngx_module_names[] = {'           >> $NGX_MODULES_C
+echo 'char *ngx_module_names[] = {'           >> "$NGX_MODULES_C"
 
 for mod in $modules
 do
-    echo "    \"$mod\","                      >> $NGX_MODULES_C
+    echo "    \"$mod\","                      >> "$NGX_MODULES_C"
 done
 
-cat << END                                    >> $NGX_MODULES_C
+cat << END                                    >> "$NGX_MODULES_C"
     NULL
 };
-
 END
